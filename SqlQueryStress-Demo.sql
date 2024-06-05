@@ -445,3 +445,80 @@ Don't engineer your query to work. Make it break before PROD! 👍
 
 SELECT Id
 FROM dbo.Employee;
+
+
+
+/*
+
+If we have no time for the next items we will clean up. 🧹
+
+*/
+
+USE master;
+
+IF DATABASEPROPERTYEX('SqlQueryStress', 'Version') IS NOT NULL
+BEGIN
+    ALTER DATABASE SqlQueryStress SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE SqlQueryStress;
+END;
+GO
+
+
+/*
+
+🎁 Bonus: How can we tell if parameter substitution is working?
+
+- Extented Events
+
+*/
+
+
+IF EXISTS
+(
+    SELECT *
+    FROM sys.server_event_sessions
+    WHERE name = 'SQLQueryStress'
+)
+BEGIN
+    DROP EVENT SESSION [SQLQueryStress] ON SERVER;
+END;
+GO
+
+
+CREATE EVENT SESSION [SQLQueryStress]
+ON SERVER
+    ADD EVENT sqlserver.rpc_completed
+    (ACTION
+     (
+         sqlserver.client_app_name,
+         sqlserver.database_id,
+         sqlserver.query_hash,
+         sqlserver.session_id
+     )
+     WHERE (
+               [sqlserver].[database_name] = N'sqlquerystress'
+               AND [sqlserver].[is_system] = (0)
+			   AND [connection_reset_option] = N'None'
+           )
+    )
+    ADD TARGET package0.ring_buffer
+WITH
+(
+    MAX_MEMORY = 4096KB,
+    EVENT_RETENTION_MODE = ALLOW_SINGLE_EVENT_LOSS,
+    MAX_DISPATCH_LATENCY = 3 SECONDS,
+    MAX_EVENT_SIZE = 0KB,
+    MEMORY_PARTITION_MODE = NONE,
+    TRACK_CAUSALITY = ON,
+    STARTUP_STATE = OFF
+);
+GO
+
+
+ALTER EVENT SESSION [SQLQueryStress] ON SERVER STATE = START;
+GO
+
+ALTER EVENT SESSION [SQLQueryStress] ON SERVER STATE = STOP;
+
+
+GO
