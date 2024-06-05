@@ -9,6 +9,7 @@ What does my demo environment look like?
  > SQL Server 2019 Developer Edition
 
 */
+
 USE master;
 
 IF DATABASEPROPERTYEX('SqlQueryStress', 'Version') IS NOT NULL
