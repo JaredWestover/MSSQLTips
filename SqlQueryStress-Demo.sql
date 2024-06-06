@@ -33,7 +33,7 @@ First, create a numbers table to help populate the remaining tables.
  > https://www.mssqltips.com/sqlservertip/4177/the-sql-server-numbers-table-explained-part-2/
 
 */
-DECLARE @UpperBound INT = 2000000;
+DECLARE @UpperBound INT = 3000000;
 
 ;WITH cteN (Number)
 AS (SELECT ROW_NUMBER() OVER (ORDER BY s1.[object_id])
@@ -95,8 +95,9 @@ GO
 
 /*
 
-The application heavily uses the table below when users login.
- > This table contains 2 million rows.
+The application heavily uses the table below when users log in.
+ > This table contains 3 million rows.
+ > Lots of inserts and updates throughout the day.
 
 */
 
@@ -445,6 +446,21 @@ Don't engineer your query to work. Make it break before PROD! 👍
 
 SELECT Id
 FROM dbo.Employee;
+
+
+
+
+
+/*
+
+You can download the source code and make modifications. 👩‍💻
+
+
+*/
+
+
+
+
 
 
 
