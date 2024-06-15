@@ -1,5 +1,9 @@
 ﻿/*
 
+Download this file at the URL below.
+ > https://github.com/JaredWestover/MSSQLTips/blob/main/SqlQueryStress-Demo.sql
+
+
 What does my demo environment look like?
  > VM with Windows 2019 & 4 Cores
  > 16GB of memory
