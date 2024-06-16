@@ -37,7 +37,7 @@ First, create a numbers table to help populate the remaining tables.
  > https://www.mssqltips.com/sqlservertip/4177/the-sql-server-numbers-table-explained-part-2/
 
 */
-DECLARE @UpperBound INT = 3000000;
+DECLARE @upperBound INT = 3000000;
 
 ;WITH cteN (Number)
 AS (SELECT ROW_NUMBER() OVER (ORDER BY s1.[object_id])
@@ -46,7 +46,7 @@ AS (SELECT ROW_NUMBER() OVER (ORDER BY s1.[object_id])
 SELECT [Number]
 INTO dbo.Numbers
 FROM cteN
-WHERE [Number] <= @UpperBound;
+WHERE [Number] <= @upperBound;
 GO
 
 
