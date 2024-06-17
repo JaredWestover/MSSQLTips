@@ -85,10 +85,10 @@ SELECT CONCAT(
                               (ABS(CHECKSUM(NEWID())) % 26) + 1,
                               (ABS(CHECKSUM(NEWID()) % (10 - 7 + 1)) + 7)
                           )
-             ) AS UserName, --dnsndndnd.snsnsns
+             ) AS UserName, -- dnsndndnd.snsnsns
        CASE
            WHEN n.Number % 1000 = 0 THEN
-               1 --sysadmin, we don't want too many
+               1 -- sysadmin, we don't want too many
            ELSE
        (ABS(CHECKSUM(NEWID()) % (20 - 2 + 1)) + 2)
        END AS PermissionLevel
@@ -151,7 +151,7 @@ GO
 /*
 
 Let's enable Query Store with the command below.
-  > Helpful video with Erin Stellato https://www.youtube.com/watch?v=bJR6eBcp2-Q
+  > Helpful SQLBits video with Erin Stellato https://www.youtube.com/watch?v=bJR6eBcp2-Q
 
 */
 
@@ -189,7 +189,7 @@ GO 10
  > Turn on the actual execution plan and run the query below.
 
 
- > Let's check out the execution plan and see what's missing. 
+ > Let's check out the execution plan and see what's missing. 🔎
  
 */
 SELECT el.LastLogin,
@@ -256,7 +256,7 @@ GO
 
  > The query executes over 25,000 times daily. 
  > A record is added every time a user logs into the application.
- > We've verified it cannot be rewritten.
+ > We verified that we could not rewrite the query..
 
 */
 
@@ -518,7 +518,7 @@ GO
 
 🎁 Bonus: How can we tell if parameter substitution is working?
 
-- Extented Events
+- Extended Events
 
 */
 
