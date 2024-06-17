@@ -151,7 +151,7 @@ GO
 /*
 
 Let's enable Query Store with the command below.
-  > Video with Erin Stellato https://www.youtube.com/watch?v=bJR6eBcp2-Q
+  > Helpful video with Erin Stellato https://www.youtube.com/watch?v=bJR6eBcp2-Q
 
 */
 
@@ -189,7 +189,7 @@ GO 10
  > Turn on the actual execution plan and run the query below.
 
 
- > Let's check out the execution plan and see what's missing.
+ > Let's check out the execution plan and see what's missing. 
  
 */
 SELECT el.LastLogin,
