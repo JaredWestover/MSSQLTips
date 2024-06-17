@@ -148,12 +148,35 @@ SELECT CASE
 FROM dbo.Numbers n;
 GO
 
+/*
 
+Let's enable Query Store with the command below.
+ > https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver16#Enabling
 
+*/
+
+ALTER DATABASE SqlQueryStress
+SET QUERY_STORE = ON (OPERATION_MODE = READ_WRITE, QUERY_CAPTURE_MODE = ALL);
+GO
 
 /* 
 
-Let's imagine we found the query below using Query Store.
+Let's use the GO command to generate some data in Query Store.
+
+
+*/
+
+SELECT el.LastLogin,
+       el.Notes
+FROM dbo.EmployeeLog el
+WHERE el.EmployeeId = 50;
+GO 50
+
+SELECT TOP 1 e.UserName FROM dbo.Employee e WHERE e.Id = 100
+GO 10
+
+
+/*
 
  > What's the query doing?
  > Turn on the actual execution plan and run the query below.
@@ -163,7 +186,7 @@ Let's imagine we found the query below using Query Store.
  
 */
 SELECT el.LastLogin,
-       el.Notes -- Do we really need to include this column?
+       el.Notes
 FROM dbo.EmployeeLog el
 WHERE el.EmployeeId = 50;
 GO
