@@ -151,12 +151,16 @@ GO
 /*
 
 Let's enable Query Store with the command below.
- > https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver16#Enabling
+  > Video with Erin Stellato https://www.youtube.com/watch?v=bJR6eBcp2-Q
 
 */
 
 ALTER DATABASE SqlQueryStress
-SET QUERY_STORE = ON (OPERATION_MODE = READ_WRITE, QUERY_CAPTURE_MODE = ALL);
+SET QUERY_STORE = ON
+    (
+        OPERATION_MODE = READ_WRITE,
+        QUERY_CAPTURE_MODE = ALL
+    );
 GO
 
 /* 
@@ -172,7 +176,10 @@ FROM dbo.EmployeeLog el
 WHERE el.EmployeeId = 50;
 GO 50
 
-SELECT TOP 1 e.UserName FROM dbo.Employee e WHERE e.Id = 100
+SELECT TOP 100
+       e.UserName
+FROM dbo.Employee e
+WHERE e.Id > 0 AND e.Id <= 100;
 GO 10
 
 
