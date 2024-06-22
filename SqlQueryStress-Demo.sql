@@ -220,6 +220,7 @@ FROM sys.dm_db_missing_index_details AS mid
     CROSS APPLY sys.dm_db_missing_index_columns(mid.index_handle) mih
     INNER JOIN sys.dm_db_missing_index_groups AS mig
         ON mig.index_handle = mid.index_handle
+WHERE mid.database_id = DB_ID()
 ORDER BY mig.index_group_handle,
          mig.index_handle,
          mih.column_id;
@@ -397,10 +398,17 @@ Head back to SqlQueryStress and rerun the 2,500 executions.
 
 
 ***************************************
-
-
-
-
+Test ID: 3decfa9f-d661-43be-9afd-baebc26485e6
+Test TimeStamp: 6/22/2024 10:02:03 AM
+Elapsed Time: 00:00:00.1613
+Number of Iterations: 50
+Number of Threads: 50
+Delay Between Queries (ms): 0
+CPU Seconds/Iteration (Avg): 0.0000
+Actual Seconds/Iteration (Avg): 0.0010
+Iterations Completed: 2500
+Client Seconds/Iteration (Avg): 0.0005
+Logical Reads/Iteration (Avg): 5.0000
 
 
 ***************************************
