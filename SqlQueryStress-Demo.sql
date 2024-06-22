@@ -151,6 +151,8 @@ GO
 /*
 
 Let's enable Query Store with the command below.
+  > It's a free performance monitoring tool that captures plans and runtime stats.
+  > Plus, Query Store saves the data, so it remains after a reboot or restore.
   > Helpful video with Erin Stellato https://www.youtube.com/watch?v=bJR6eBcp2-Q
 
 */
@@ -285,7 +287,7 @@ What's happened so far?
 
 Is the index worth it?
 
- > 50ms x 25,000 = 20+ minutes per day 😲
+ > 75ms x 25,000 = 30+ minutes per day 😲
  > This is a lot of wasted time. But, this change requires a lot of regression testing for QA.
 
 Is the change worth the effort?
@@ -293,7 +295,7 @@ Is the change worth the effort?
  > Will the index cause other queries to regress?
  > How big will the index be?
 
-SQL people will say, of course, it's worth the effort. Going from 50ms to 5ms is huge.
+SQL people will say, of course, it's worth the effort. Going from 75ms to 5ms is huge.
 
 But how can we show the value?
 
@@ -332,6 +334,8 @@ Enter Baseline Below:
 
 
 
+
+
 */
 
 
@@ -360,12 +364,10 @@ INCLUDE (
 GO
 
 
+/* 
 
+How would we usually show the difference in SSMS?
 
-
-
-
-/*
 
 Let's rerun the query and check out the execution plan.
 
@@ -395,6 +397,9 @@ Head back to SqlQueryStress and rerun the 2,500 executions.
 
 
 ***************************************
+
+
+
 
 
 
@@ -449,16 +454,9 @@ Why Parameter Substitution?
 
 /* 
 
-Different plans and times based on statistics and rows returned.
+Different times based on statistics and rows returned.
 
 */
-SELECT e.UserName,
-       el.LastLogin,
-       el.Notes
-FROM dbo.EmployeeLog el
-    INNER JOIN dbo.Employee e
-        ON e.Id = el.EmployeeId
-WHERE e.PermissionLevel = 1; -- Fewer rows with a 1
 
 SELECT e.UserName,
        el.LastLogin,
@@ -466,7 +464,17 @@ SELECT e.UserName,
 FROM dbo.EmployeeLog el
     INNER JOIN dbo.Employee e
         ON e.Id = el.EmployeeId
-WHERE e.PermissionLevel = 10;
+WHERE e.PermissionLevel = 1-- Fewer rows with a 1
+ORDER BY el.LastLogin, e.UserName DESC;
+
+SELECT e.UserName,
+       el.LastLogin,
+       el.Notes
+FROM dbo.EmployeeLog el
+    INNER JOIN dbo.Employee e
+        ON e.Id = el.EmployeeId
+WHERE e.PermissionLevel = 20
+ORDER BY el.LastLogin, e.UserName DESC;
 
 
 /*
