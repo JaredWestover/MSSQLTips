@@ -268,7 +268,7 @@ GO
 
 /*
  
-What's happened so far?
+What we know so far?
 
 > SQL didn't provide a missing index hint.
   > It's okay since we can use Query Store to see how often it runs.
@@ -398,17 +398,7 @@ Head back to SqlQueryStress and rerun the 2,500 executions.
 
 
 ***************************************
-Test ID: 3decfa9f-d661-43be-9afd-baebc26485e6
-Test TimeStamp: 6/22/2024 10:02:03 AM
-Elapsed Time: 00:00:00.1613
-Number of Iterations: 50
-Number of Threads: 50
-Delay Between Queries (ms): 0
-CPU Seconds/Iteration (Avg): 0.0000
-Actual Seconds/Iteration (Avg): 0.0010
-Iterations Completed: 2500
-Client Seconds/Iteration (Avg): 0.0005
-Logical Reads/Iteration (Avg): 5.0000
+
 
 
 ***************************************
