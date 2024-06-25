@@ -60,9 +60,9 @@ CREATE TABLE dbo.Employee
     Id INT IDENTITY(1, 1) NOT NULL,
     UserName VARCHAR(200) NOT NULL,
     PermissionLevel INT NOT NULL,
-    CreatedDate DATETIME NOT NULL
+    CreatedDate DATETIME2 NOT NULL
         DEFAULT GETDATE(),
-    ModifiedDate DATETIME NULL,
+    ModifiedDate DATETIME2 NULL,
     CONSTRAINT PK_Employee_Id
         PRIMARY KEY CLUSTERED (Id)
 );
@@ -184,6 +184,16 @@ FROM dbo.Employee e
 WHERE e.Id > 0 AND e.Id <= 100;
 GO 10
 
+/*
+
+🛑 Go look at Query Store 🛑
+
+
+*/
+
+
+
+
 
 /*
 
@@ -255,7 +265,7 @@ GO
 
 /*
 
-**IMPORTANT POINTS**
+**IMPORTANT POINTS**🧙‍
 
  > The query executes over 25,000 times daily. 
  > A record is added every time a user logs into the application.
