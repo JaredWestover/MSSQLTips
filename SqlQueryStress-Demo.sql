@@ -468,7 +468,8 @@ Different times based on statistics and rows returned.
 
 SELECT e.UserName,
        el.LastLogin,
-       el.Notes
+       el.Notes,
+	   el.CreatedDate
 FROM dbo.EmployeeLog el
     INNER JOIN dbo.Employee e
         ON e.Id = el.EmployeeId
@@ -477,7 +478,8 @@ ORDER BY el.LastLogin, e.UserName DESC;
 
 SELECT e.UserName,
        el.LastLogin,
-       el.Notes
+       el.Notes,
+	   el.CreatedDate
 FROM dbo.EmployeeLog el
     INNER JOIN dbo.Employee e
         ON e.Id = el.EmployeeId
