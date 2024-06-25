@@ -495,6 +495,7 @@ FROM dbo.Employee;
 
 You can download the source code and make modifications. 👩‍💻
 
+Let's open up Visual Studio and take a look at the solution.
 
 */
 
