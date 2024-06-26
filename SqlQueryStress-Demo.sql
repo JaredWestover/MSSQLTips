@@ -60,9 +60,9 @@ CREATE TABLE dbo.Employee
     Id INT IDENTITY(1, 1) NOT NULL,
     UserName VARCHAR(200) NOT NULL,
     PermissionLevel INT NOT NULL,
-    CreatedDate DATETIME NOT NULL
+    CreatedDate DATETIME2 NOT NULL
         DEFAULT GETDATE(),
-    ModifiedDate DATETIME NULL,
+    ModifiedDate DATETIME2 NULL,
     CONSTRAINT PK_Employee_Id
         PRIMARY KEY CLUSTERED (Id)
 );
@@ -184,6 +184,16 @@ FROM dbo.Employee e
 WHERE e.Id > 0 AND e.Id <= 100;
 GO 10
 
+/*
+
+🛑 Go look at Query Store 🛑
+
+
+*/
+
+
+
+
 
 /*
 
@@ -255,7 +265,7 @@ GO
 
 /*
 
-**IMPORTANT POINTS**
+**IMPORTANT POINTS**🧙‍
 
  > The query executes over 25,000 times daily. 
  > A record is added every time a user logs into the application.
@@ -331,7 +341,7 @@ https://github.com/ErikEJ/SqlQueryStress
 
 /*
 
-Enter Baseline Below:
+Enter Benchmark Below:
 
 
 
@@ -458,16 +468,18 @@ Different times based on statistics and rows returned.
 
 SELECT e.UserName,
        el.LastLogin,
-       el.Notes
+       el.Notes,
+	   el.CreatedDate
 FROM dbo.EmployeeLog el
     INNER JOIN dbo.Employee e
         ON e.Id = el.EmployeeId
-WHERE e.PermissionLevel = 1-- Fewer rows with a 1
+WHERE e.PermissionLevel = 1 -- Less rows with a 1
 ORDER BY el.LastLogin, e.UserName DESC;
 
 SELECT e.UserName,
        el.LastLogin,
-       el.Notes
+       el.Notes,
+	   el.CreatedDate
 FROM dbo.EmployeeLog el
     INNER JOIN dbo.Employee e
         ON e.Id = el.EmployeeId
@@ -495,6 +507,7 @@ FROM dbo.Employee;
 
 You can download the source code and make modifications. 👩‍💻
 
+Let's open up Visual Studio and take a look at the solution.
 
 */
 
