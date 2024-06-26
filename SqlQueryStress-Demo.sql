@@ -341,7 +341,7 @@ https://github.com/ErikEJ/SqlQueryStress
 
 /*
 
-Enter Baseline Below:
+Enter Benchmark Below:
 
 
 
@@ -473,7 +473,7 @@ SELECT e.UserName,
 FROM dbo.EmployeeLog el
     INNER JOIN dbo.Employee e
         ON e.Id = el.EmployeeId
-WHERE e.PermissionLevel = 1-- Fewer rows with a 1
+WHERE e.PermissionLevel = 1 -- Less rows with a 1
 ORDER BY el.LastLogin, e.UserName DESC;
 
 SELECT e.UserName,
