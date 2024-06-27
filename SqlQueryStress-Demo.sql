@@ -88,7 +88,7 @@ SELECT CONCAT(
              ) AS UserName, --dnsndndnd.snsnsns
        CASE
            WHEN n.Number % 1000 = 0 THEN
-               1 --sysadmin, we don't want too many
+               1 --sysadmin, we don't want too many 📢
            ELSE
        (ABS(CHECKSUM(NEWID()) % (20 - 2 + 1)) + 2)
        END AS PermissionLevel
@@ -278,9 +278,9 @@ GO
 
 /*
  
-What we know so far?
+What do we know so far?
 
-> SQL didn't provide a missing index hint.
+> SQL didn't provide a suggestion for missing an index.
   > It's okay since we can use Query Store to see how often it runs.
  
 > SQL does not create a nonclustered index when creating a foreign key.
@@ -316,8 +316,7 @@ But how can we show the value?
 
 /*
 
-*********BIG IDEA**********
-***************************
+📢*********BIG IDEA**********📢
 
 We can use SqlQueryStress to express the performance impact at a larger scale.
 
@@ -473,7 +472,7 @@ SELECT e.UserName,
 FROM dbo.EmployeeLog el
     INNER JOIN dbo.Employee e
         ON e.Id = el.EmployeeId
-WHERE e.PermissionLevel = 1 -- Less rows with a 1
+WHERE e.PermissionLevel = 1 -- Less rows with a 1 
 ORDER BY el.LastLogin, e.UserName DESC;
 
 SELECT e.UserName,
@@ -507,7 +506,6 @@ FROM dbo.Employee;
 
 You can download the source code and make modifications. 👩‍💻
 
-Let's open up Visual Studio and take a look at the solution.
 
 */
 
