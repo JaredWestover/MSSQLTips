@@ -1,3 +1,23 @@
+USE [master];
+GO
+ 
+IF DB_ID('XMLAEnpointDemo') IS NOT NULL
+BEGIN
+    ALTER DATABASE XMLAEnpointDemo SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE XMLAEnpointDemo;
+END;
+GO
+ 
+CREATE DATABASE XMLAEnpointDemo;
+GO
+ 
+ALTER DATABASE XMLAEnpointDemo SET RECOVERY SIMPLE;
+GO
+ 
+USE XMLAEnpointDemo;
+GO
+
+
 -- Drop tables if they exist
 DROP TABLE IF EXISTS dbo.Sales;
 DROP TABLE IF EXISTS dbo.Products;
