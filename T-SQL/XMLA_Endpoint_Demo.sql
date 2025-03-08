@@ -1,20 +1,24 @@
+/*
+mssqltips.com
+*/
+
 USE [master];
 GO
  
-IF DB_ID('XMLAEnpointDemo') IS NOT NULL
+IF DB_ID('XMLAEndpointDemo') IS NOT NULL
 BEGIN
-    ALTER DATABASE XMLAEnpointDemo SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-    DROP DATABASE XMLAEnpointDemo;
+    ALTER DATABASE XMLAEndpointDemo SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE XMLAEndpointDemo;
 END;
 GO
  
-CREATE DATABASE XMLAEnpointDemo;
+CREATE DATABASE XMLAEndpointDemo;
 GO
  
-ALTER DATABASE XMLAEnpointDemo SET RECOVERY SIMPLE;
+ALTER DATABASE XMLAEndpointDemo SET RECOVERY SIMPLE;
 GO
  
-USE XMLAEnpointDemo;
+USE XMLAEndpointDemo;
 GO
 
 
@@ -118,4 +122,20 @@ SELECT TOP 10000
     (ABS(CHECKSUM(NEWID())) % 5 + 1) * (10 + ABS(CHECKSUM(NEWID())) % 90)
 FROM sys.all_columns s1
     CROSS JOIN sys.all_columns s2;
+GO
+
+
+
+/*
+Once you are done don't forget to clean up
+*/
+
+USE [master];
+GO
+
+IF DB_ID('XMLAEndpointDemo') IS NOT NULL
+BEGIN
+    ALTER DATABASE XMLAEndpointDemo SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE XMLAEndpointDemo;
+END;
 GO
