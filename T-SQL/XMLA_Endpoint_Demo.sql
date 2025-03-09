@@ -21,14 +21,17 @@ GO
 USE XMLAEndpointDemo;
 GO
 
-
--- Drop tables if they exist
+/*
+Drop tables if they exist
+*/
 DROP TABLE IF EXISTS dbo.Sales;
 DROP TABLE IF EXISTS dbo.Products;
 DROP TABLE IF EXISTS dbo.Customers;
 GO
 
--- Create Dimension Tables
+/*
+Create Dimension Tables
+*/
 CREATE TABLE dbo.Products
 (
     ProductId INT IDENTITY(1, 1) PRIMARY KEY,
@@ -47,7 +50,9 @@ CREATE TABLE dbo.Customers
 );
 GO
 
--- Create Fact Table
+/*
+Create Fact Table
+*/
 CREATE TABLE dbo.Sales
 (
     SaleId INT IDENTITY(1, 1) PRIMARY KEY,
@@ -61,7 +66,9 @@ CREATE TABLE dbo.Sales
 );
 GO
 
--- Insert 1,000 Products
+/*
+Insert 1,000 Products
+*/
 INSERT INTO dbo.Products
 (
     ProductName,
@@ -82,7 +89,9 @@ SELECT TOP 1000
 FROM sys.all_columns s1;
 GO
 
--- Insert 1,000 Customers
+/*
+Insert 1,000 Customers
+*/
 INSERT INTO dbo.Customers
 (
     FirstName,
@@ -105,7 +114,9 @@ SELECT TOP 1000
 FROM sys.all_columns s1;
 GO
 
--- Insert 10,000 Sales
+/*
+Insert 10,000 Sales
+*/
 INSERT INTO dbo.Sales
 (
     ProductId,
@@ -124,12 +135,9 @@ FROM sys.all_columns s1
     CROSS JOIN sys.all_columns s2;
 GO
 
-
-
 /*
-Once you are done don't forget to clean up
+After you are done don't forget to clean up
 */
-
 USE [master];
 GO
 
